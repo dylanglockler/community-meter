@@ -29,6 +29,7 @@ class SurveyController extends Controller
             'additional_comments'=> 'nullable|string|max:2000',
         ]);
 
+        $validated['submitted_at'] = now();
         $response = SurveyResponse::create($validated);
 
         $recipients = array_filter([
