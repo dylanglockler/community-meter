@@ -9,6 +9,8 @@ Route::get('/', [SurveyController::class, 'show'])->name('survey');
 Route::post('/', [SurveyController::class, 'store'])->name('survey.store');
 Route::get('/thank-you', [SurveyController::class, 'thankYou'])->name('thank-you');
 Route::get('/flyer', fn() => view('flyer'))->name('flyer');
+Route::get('/flyer/2up', fn() => view('flyer-2up'))->name('flyer.2up');
+Route::get('/flyer/4up', fn() => view('flyer-4up'))->name('flyer.4up');
 
 Route::get('/admin/login', [AdminController::class, 'showLogin'])->name('admin.login');
 Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login.post');

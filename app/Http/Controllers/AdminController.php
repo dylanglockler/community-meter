@@ -48,7 +48,22 @@ class AdminController extends Controller
             'residency_duration' => $responses->countBy('residency_duration')->sortDesc(),
         ];
 
-        return view('admin.dashboard', compact('responses', 'total', 'stats'));
+        $insights = [];
+        if ($total > 0) {
+            $highChargeRanges = ['$100–$149','$150–$199','$200–$249','$250–$299','$300–$349','$350–$399','$400 or more'];
+            $insights = [
+                'top_charge'       => $responses->countBy('water_charge_range')->sortDesc()->keys()->first() ?? '—',
+                'high_charge_pct'  => round($responses->filter(fn($r) => in_array($r->water_charge_range, $highChargeRanges))->count() / $total * 100),
+                'increased_pct'    => round($responses->filter(fn($r) => in_array($r->charge_increased, ['Yes, significantly', 'Yes, somewhat']))->count() / $total * 100),
+                'denied_count'     => $responses->filter(fn($r) => $r->shown_records === 'Requested and denied')->count(),
+                'unknown_calc_pct' => round($responses->filter(fn($r) => $r->charge_calculation === "I don't know")->count() / $total * 100),
+                'separate_pct'     => round($responses->filter(fn($r) => $r->separate_charge === 'Yes, separate charge')->count() / $total * 100),
+                'first_response'   => $responses->last()?->submitted_at,
+                'latest_response'  => $responses->first()?->submitted_at,
+            ];
+        }
+
+        return view('admin.dashboard', compact('responses', 'total', 'stats', 'insights'));
     }
 
     public function export()
