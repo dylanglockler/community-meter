@@ -19,6 +19,7 @@ class SurveyResponse extends Model
         'home_age',
         'residency_duration',
         'additional_comments',
+        'contact_email',
         'submitted_at',
     ];
 

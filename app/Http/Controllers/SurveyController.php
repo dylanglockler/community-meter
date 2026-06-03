@@ -36,6 +36,7 @@ class SurveyController extends Controller
             'home_age'           => 'required|string',
             'residency_duration' => 'required|string',
             'additional_comments'=> 'nullable|string|max:2000',
+            'contact_email'      => 'nullable|email|max:255',
         ]);
 
         $validated['submitted_at'] = now();

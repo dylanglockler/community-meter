@@ -293,6 +293,35 @@
                 placeholder="Your comments...">{{ old('additional_comments') }}</textarea>
         </div>
 
+        {{-- Q11: Optional email for results notification --}}
+        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+            <div class="lang-en">
+                <p class="font-semibold text-gray-900 mb-1">
+                    11. Would you like to receive a summary of the survey results?
+                    <span class="font-normal text-gray-400">(completely optional)</span>
+                </p>
+                <p class="text-sm text-gray-500 mt-1 mb-4 leading-relaxed">
+                    If you'd like, you can leave your email address below and we'll send you a summary when the survey closes.
+                    This is entirely your choice — the survey is still fully anonymous whether or not you provide an email.
+                    <strong>Your email will not be shared with any outside party for any purpose other than sending you the results of this survey.</strong>
+                </p>
+            </div>
+            <div class="lang-es hidden">
+                <p class="font-semibold text-gray-900 mb-1">
+                    11. ¿Le gustaría recibir un resumen de los resultados de la encuesta?
+                    <span class="font-normal text-gray-400">(completamente opcional)</span>
+                </p>
+                <p class="text-sm text-gray-500 mt-1 mb-4 leading-relaxed">
+                    Si lo desea, puede dejar su dirección de correo electrónico y le enviaremos un resumen cuando se cierre la encuesta.
+                    Esto es completamente su decisión — la encuesta sigue siendo totalmente anónima, con o sin correo electrónico.
+                    <strong>Su correo electrónico no será compartido con ninguna parte externa para ningún propósito que no sea enviarle los resultados de esta encuesta.</strong>
+                </p>
+            </div>
+            <input type="email" name="contact_email" value="{{ old('contact_email') }}"
+                class="w-full rounded-lg border border-gray-200 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                placeholder="your@email.com (optional)">
+        </div>
+
         {{-- Submit --}}
         <div class="text-center pb-4">
             <button type="submit"
