@@ -18,7 +18,7 @@
     </div>
 
     {{-- Anonymity Notice --}}
-    <div class="bg-green-50 border border-green-300 rounded-xl p-5 mb-8">
+    <div class="bg-green-50 border border-green-300 rounded-xl p-5 mb-4">
         <div class="lang-en">
             <p class="font-semibold text-green-800 mb-1">Your Privacy is Protected</p>
             <p class="text-green-700 text-sm leading-relaxed">This survey is completely anonymous. We do not collect your name, address, unit number, or any information that could identify you. Your answers cannot be traced back to you.</p>
@@ -26,6 +26,16 @@
         <div class="lang-es hidden">
             <p class="font-semibold text-green-800 mb-1">Su privacidad está protegida</p>
             <p class="text-green-700 text-sm leading-relaxed">Esta encuesta es completamente anónima. No recopilamos su nombre, dirección, número de unidad ni ninguna información que pueda identificarle. Sus respuestas no pueden ser rastreadas hasta usted.</p>
+        </div>
+    </div>
+
+    {{-- Independence Disclosure --}}
+    <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 mb-8">
+        <div class="lang-en">
+            <p class="text-gray-600 text-sm leading-relaxed">This survey is being collected by an independent reviewer in an effort to protect residents' rights and is not associated with Medford Estates, the property management, or any individual resident.</p>
+        </div>
+        <div class="lang-es hidden">
+            <p class="text-gray-600 text-sm leading-relaxed">Esta encuesta está siendo recopilada por un revisor independiente con el fin de proteger los derechos de los residentes y no está asociada con Medford Estates, la administración de la propiedad ni ningún residente individual.</p>
         </div>
     </div>
 
