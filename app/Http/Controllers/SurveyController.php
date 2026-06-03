@@ -6,6 +6,7 @@ use App\Mail\SurveyResponseReceived;
 use App\Models\SurveyResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\RateLimiter;
 
 class SurveyController extends Controller
 {
@@ -16,6 +17,14 @@ class SurveyController extends Controller
 
     public function store(Request $request)
     {
+        // 3 submissions per IP per 24 hours — checked but never stored
+        $key = 'survey:' . sha1($request->ip());
+        if (RateLimiter::tooManyAttempts($key, 3)) {
+            $minutes = ceil(RateLimiter::availableIn($key) / 60);
+            return back()->withErrors(['rate_limit' => "You've already submitted several responses. Please try again in {$minutes} minutes."]);
+        }
+        RateLimiter::hit($key, 86400);
+
         $validated = $request->validate([
             'water_charge_range' => 'required|string',
             'household_size'     => 'required|string',
