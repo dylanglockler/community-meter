@@ -42,7 +42,7 @@
     {{-- Headline --}}
     <div class="mb-8 text-center">
         <div class="lang-en">
-            <h1 class="text-2xl font-bold text-gray-900 mb-2">Water Billing Survey</h1>
+            <h1 class="text-2xl font-bold text-gray-900 mb-2">Medford Estates Water Billing Survey</h1>
             <p class="text-gray-600 text-sm">Help your community understand how water charges are being applied. This takes about 2 minutes.</p>
         </div>
         <div class="lang-es hidden">
@@ -280,13 +280,81 @@
             </div>
         </div>
 
-        {{-- Q10: Optional comments --}}
+        {{-- Q10: Pressure to leave --}}
         <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
             <div class="lang-en">
-                <p class="font-semibold text-gray-900 mb-1">10. Anything else you'd like to share about water billing? <span class="font-normal text-gray-400">(optional)</span></p>
+                <p class="font-semibold text-gray-900 mb-1">10. Has the park ever pressured you to sell, move, or leave?</p>
+                <p class="text-xs text-gray-400 mb-3">Select all that apply.</p>
             </div>
             <div class="lang-es hidden">
-                <p class="font-semibold text-gray-900 mb-1">10. ¿Hay algo más que quiera compartir sobre la facturación del agua? <span class="font-normal text-gray-400">(opcional)</span></p>
+                <p class="font-semibold text-gray-900 mb-1">10. ¿El parque alguna vez le ha presionado para vender, mudarse o irse?</p>
+                <p class="text-xs text-gray-400 mb-3">Seleccione todas las que apliquen.</p>
+            </div>
+            <div class="space-y-2">
+                @php
+                $ptlOptions = [
+                    'No' => ['en' => 'No', 'es' => 'No'],
+                    'Yes — I\'ve received a buyout or offer to purchase my home' => ['en' => 'Yes — I\'ve received a buyout or offer to purchase my home', 'es' => 'Sí — He recibido una oferta de compra de mi hogar'],
+                    'Yes — through fees, charges, or rule enforcement' => ['en' => 'Yes — through fees, charges, or rule enforcement', 'es' => 'Sí — mediante cargos, tarifas o aplicación de reglas'],
+                    'Yes — my lease was not renewed or I was threatened with eviction' => ['en' => 'Yes — my lease was not renewed or I was threatened with eviction', 'es' => 'Sí — no me renovaron el contrato o me amenazaron con desalojo'],
+                    'Yes — other' => ['en' => 'Yes — other', 'es' => 'Sí — otro'],
+                    'Prefer not to say' => ['en' => 'Prefer not to say', 'es' => 'Prefiero no decir'],
+                ];
+                $oldPtl = old('pressure_to_leave', []);
+                @endphp
+                @foreach($ptlOptions as $value => $labels)
+                <label class="flex items-center gap-3 p-3 rounded-lg border border-gray-200 cursor-pointer hover:bg-blue-50 hover:border-blue-300 transition has-[:checked]:bg-blue-50 has-[:checked]:border-blue-400">
+                    <input type="checkbox" name="pressure_to_leave[]" value="{{ $value }}" class="text-blue-600 rounded" {{ in_array($value, $oldPtl) ? 'checked' : '' }}>
+                    <span class="lang-en text-sm">{{ $labels['en'] }}</span>
+                    <span class="lang-es hidden text-sm">{{ $labels['es'] }}</span>
+                </label>
+                @endforeach
+            </div>
+        </div>
+
+        {{-- Q11: Charges to push out --}}
+        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+            <div class="lang-en">
+                <p class="font-semibold text-gray-900 mb-3">11. Do you believe your water charges are being used to push you out?</p>
+            </div>
+            <div class="lang-es hidden">
+                <p class="font-semibold text-gray-900 mb-3">11. ¿Cree que sus cargos de agua se están usando para presionarle a irse?</p>
+            </div>
+            <div class="space-y-2">
+                @foreach([
+                    'Yes'      => ['en' => 'Yes', 'es' => 'Sí'],
+                    'No'       => ['en' => 'No', 'es' => 'No'],
+                    'Not sure' => ['en' => 'Not sure', 'es' => 'No estoy seguro/a'],
+                ] as $value => $labels)
+                <label class="flex items-center gap-3 p-3 rounded-lg border border-gray-200 cursor-pointer hover:bg-blue-50 hover:border-blue-300 transition has-[:checked]:bg-blue-50 has-[:checked]:border-blue-400">
+                    <input type="radio" name="charges_to_push_out" value="{{ $value }}" class="text-blue-600" {{ old('charges_to_push_out') === $value ? 'checked' : '' }}>
+                    <span class="lang-en text-sm">{{ $labels['en'] }}</span>
+                    <span class="lang-es hidden text-sm">{{ $labels['es'] }}</span>
+                </label>
+                @endforeach
+            </div>
+        </div>
+
+        {{-- Q12: Pressure description (optional) --}}
+        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+            <div class="lang-en">
+                <p class="font-semibold text-gray-900 mb-1">12. If you've experienced pressure to leave, describe what happened. <span class="font-normal text-gray-400">(optional)</span></p>
+            </div>
+            <div class="lang-es hidden">
+                <p class="font-semibold text-gray-900 mb-1">12. Si ha experimentado presión para irse, describa lo que sucedió. <span class="font-normal text-gray-400">(opcional)</span></p>
+            </div>
+            <textarea name="pressure_description" rows="4"
+                class="mt-3 w-full rounded-lg border border-gray-200 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none"
+                placeholder="Describe what happened...">{{ old('pressure_description') }}</textarea>
+        </div>
+
+        {{-- Q13: Optional comments --}}
+        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+            <div class="lang-en">
+                <p class="font-semibold text-gray-900 mb-1">13. Anything else you'd like to share about water billing? <span class="font-normal text-gray-400">(optional)</span></p>
+            </div>
+            <div class="lang-es hidden">
+                <p class="font-semibold text-gray-900 mb-1">13. ¿Hay algo más que quiera compartir sobre la facturación del agua? <span class="font-normal text-gray-400">(opcional)</span></p>
             </div>
             <textarea name="additional_comments" rows="4"
                 class="mt-3 w-full rounded-lg border border-gray-200 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none"

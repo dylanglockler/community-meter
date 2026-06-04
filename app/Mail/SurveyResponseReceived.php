@@ -19,6 +19,7 @@ class SurveyResponseReceived extends Mailable
     {
         return new Envelope(
             subject: 'New Community Meter Survey Response',
+            replyTo: [new \Illuminate\Mail\Mailables\Address(env('MAIL_TO_1'), 'Community Meter')],
         );
     }
 

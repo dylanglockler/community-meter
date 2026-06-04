@@ -35,7 +35,17 @@
     <tr><td>Home ownership</td><td>{{ $response->home_ownership }}</td></tr>
     <tr><td>Home age</td><td>{{ $response->home_age }}</td></tr>
     <tr><td>Length of residency</td><td>{{ $response->residency_duration }}</td></tr>
+    @if($response->pressure_to_leave !== null)
+    <tr><td>Pressure to sell/move/leave</td><td>{{ implode('; ', $response->pressure_to_leave) }}</td></tr>
+    @endif
+    @if($response->charges_to_push_out)
+    <tr><td>Charges used to push out?</td><td>{{ $response->charges_to_push_out }}</td></tr>
+    @endif
   </table>
+
+  @if($response->pressure_description)
+  <div class="comments"><strong>Pressure description:</strong><br>{{ $response->pressure_description }}</div>
+  @endif
 
   @if($response->additional_comments)
   <div class="comments"><strong>Additional comments:</strong><br>{{ $response->additional_comments }}</div>

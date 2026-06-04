@@ -18,12 +18,16 @@ class SurveyResponse extends Model
         'home_ownership',
         'home_age',
         'residency_duration',
+        'pressure_to_leave',
+        'charges_to_push_out',
+        'pressure_description',
         'additional_comments',
         'contact_email',
         'submitted_at',
     ];
 
     protected $casts = [
-        'submitted_at' => 'datetime',
+        'submitted_at'     => 'datetime',
+        'pressure_to_leave' => 'array',
     ];
 }

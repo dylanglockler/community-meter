@@ -26,17 +26,21 @@ class SurveyController extends Controller
         RateLimiter::hit($key, 86400);
 
         $validated = $request->validate([
-            'water_charge_range' => 'required|string',
-            'household_size'     => 'required|string',
-            'separate_charge'    => 'required|string',
-            'charge_calculation' => 'required|string',
-            'charge_increased'   => 'required|string',
-            'shown_records'      => 'required|string',
-            'home_ownership'     => 'required|string',
-            'home_age'           => 'required|string',
-            'residency_duration' => 'required|string',
-            'additional_comments'=> 'nullable|string|max:2000',
-            'contact_email'      => 'nullable|email|max:255',
+            'water_charge_range'   => 'required|string',
+            'household_size'       => 'required|string',
+            'separate_charge'      => 'required|string',
+            'charge_calculation'   => 'required|string',
+            'charge_increased'     => 'required|string',
+            'shown_records'        => 'required|string',
+            'home_ownership'       => 'required|string',
+            'home_age'             => 'required|string',
+            'residency_duration'   => 'required|string',
+            'pressure_to_leave'    => 'required|array|min:1',
+            'pressure_to_leave.*'  => 'string',
+            'charges_to_push_out'  => 'required|string',
+            'pressure_description' => 'nullable|string|max:2000',
+            'additional_comments'  => 'nullable|string|max:2000',
+            'contact_email'        => 'nullable|email|max:255',
         ]);
 
         $validated['submitted_at'] = now();
