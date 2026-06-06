@@ -11,7 +11,7 @@
             Are you being overcharged for water?
         </h1>
         <p class="{{ $compact ? 'text-sm' : 'text-xl' }} font-bold text-gray-700">
-            ¿Le están cobrando de más por el agua?
+            ¿Está pagando demasiado por el agua?
         </p>
     </div>
 
@@ -38,10 +38,10 @@
         <div class="border border-gray-200 rounded-lg {{ $compact ? 'p-2' : 'p-3' }}">
             <p class="{{ $compact ? 'text-[9px]' : 'text-xs' }} font-bold text-gray-900 {{ $compact ? 'mb-1' : 'mb-1.5' }}">Por qué importa</p>
             <ul class="{{ $compact ? 'text-[8px]' : 'text-xs' }} text-gray-700 space-y-0.5">
-                <li>• ¿Es justa su factura de agua?</li>
-                <li>• Juntos vemos el panorama completo</li>
+                <li>• Las facturas de agua varían. ¿Es justa la suya?</li>
+                <li>• Juntos podemos ver el panorama completo</li>
                 <li>• 2 minutos, 10 preguntas sencillas</li>
-                <li>• Resultados compartidos con residentes</li>
+                <li>• Los resultados se compartirán con la comunidad</li>
             </ul>
         </div>
     </div>
@@ -51,7 +51,7 @@
         <p class="{{ $compact ? 'text-[9px]' : 'text-sm' }} font-extrabold text-gray-900 {{ $compact ? 'mb-0.5' : 'mb-1' }}">100% ANONYMOUS · 100% ANÓNIMO</p>
         <p class="{{ $compact ? 'text-[8px]' : 'text-xs' }} text-gray-700 leading-snug">
             No name, unit number, or identifying info collected.<br>
-            No se recopila nombre, unidad ni información identificable.
+            No se recopilan nombres, números de lote o vivienda, ni información que pueda identificarle.
         </p>
     </div>
 
